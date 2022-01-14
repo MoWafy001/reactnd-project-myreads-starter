@@ -12,9 +12,9 @@ class BooksApp extends React.Component {
     queriedBooks: []
   }
 
-  componentDidMount() {
-    BooksAPI.getAll()
-      .then(data => this.setState({ books: data }))
+  async componentDidMount() {
+    const data = await BooksAPI.getAll()
+    this.setState({ books: data })
   }
 
   updateBooks = (e, book) => {
@@ -30,9 +30,7 @@ class BooksApp extends React.Component {
       }
     } else if (e.target.value !== 'none') {
       book.shelf = e.target.value
-      let newBooks = this.state.books
-      newBooks.push(book)
-      this.setState({ books: newBooks })
+      this.setState({ books: this.state.books.concat([book]) })
     }
 
     BooksAPI.update(book, e.target.value).catch(() => {
