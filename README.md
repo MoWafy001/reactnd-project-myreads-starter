@@ -16,6 +16,6 @@ npm install
 ```
 2. run the code
 ```
-npm run
+npm start
 ```
 3. that's it
